@@ -44,6 +44,16 @@ const reserve = (selectedArea, regularTicketCount,vipTicketCount, setReservation
         }))
 }
 
+
+//function: validation if whether or not there has been selected more than 0 tickets
+function isTicketInfoValid(vipTicketCount, regularTicketCount){
+
+  if(vipTicketCount == 0 && regularTicketCount == 0){
+      return false
+  }
+  return true
+}
+
 //function: validation if whether or not there has been selected an area
 function isAreaValid(selectedArea){
     const isSelectedAreaEmpty = !selectedArea
@@ -175,6 +185,9 @@ const StepsTab = () => {
     else if(currentStep === 1){
         isValid = isAreaValid(selectedArea)
     }
+    else if(currentStep === 0){
+      isValid = isTicketInfoValid(vipTicketCount, regularTicketCount)
+  }
     setStepIsValid(isValid)
 
   }, [billingInfo, currentStep, nameList, paymentInfo, paymentChoice, selectedArea, vipTicketCount, regularTicketCount, confirmedTerms])
